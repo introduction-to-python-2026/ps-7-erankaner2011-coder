@@ -45,3 +45,15 @@ plt.ylabel("Petal Length (cm)")
 # Save figure
 plt.savefig("correlation_plot.png")
 plt.show()
+
+import numpy as np
+
+m, b = np.polyfit(x, y, 1)
+
+plt.figure()
+plt.scatter(x, y)
+plt.plot(x, m*x + b)
+plt.xlabel("Sepal Length (cm)")
+plt.ylabel("Petal Length (cm)")
+plt.title("Scatter Plot with Regression Line")
+plt.show()
