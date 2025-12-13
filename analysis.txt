@@ -1,1 +1,16 @@
+# Data Analysis
+
+## Dataset
+I used the Iris dataset from `sklearn`, which includes different measurements of iris flowers.
+
+## What I Compared
+- Sepal length
+- Petal length
+
+## What I Found
+After creating histograms and a scatter plot, I noticed a clear positive relationship between sepal length and petal length.  
+As sepal length increases, petal length usually increases too.
+
+## Conclusion
+The results show that sepal length and petal length are strongly related.
 
