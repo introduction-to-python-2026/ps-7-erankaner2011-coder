@@ -1,59 +1,39 @@
-import pandas as pd
+# Import libraries
 import matplotlib.pyplot as plt
-from sklearn.datasets import load_iris
+import seaborn as sns
+from sklearn.datasets import fetch_openml
+import pandas as pd
+data = fetch_openml(name='iris', version=1, as_frame=True,parser='pandas')
+features = list(df.columns)
+print("Available features:", features)
+selected_features = ['sepallength', 'petalwidth', 'class']#select few columns names
+print("Selected features: ", selected_features)
+fig, axs  = plt.subplots(1, len(selected_features), figsize = (20,3))
 
-# Load dataset
-iris = load_iris()
-df = pd.DataFrame(iris.data, columns=iris.feature_names)
+for ax, f in zip(axs, selected_features):
+    ax.hist(df[f], bins=5, color='skyblue', edgecolor='black')
+    ax.set_xlabel(f)
+  reference_feature = "class" #you can specify by name or select item from the list, e.g. selected_features[1]
+y = df[reference_feature]
 
-# Inspect data
-print(df.head())
-print(df.describe())
+fig, axs  = plt.subplots(1, len(selected_features), figsize = (20,3))
 
-x = df["sepal length (cm)"]
-y = df["petal length (cm)"]
+for ax, f in zip(axs, selected_features):
+  ax.scatter(df[f], y)
+  ax.set_xlabel(f)
 
-plt.figure()
-plt.hist(x, bins=20)
-plt.title("Sepal Length Distribution")
-plt.xlabel("Sepal Length (cm)")
-plt.ylabel("Frequency")
 plt.show()
 
-plt.figure()
-plt.hist(y, bins=20)
-plt.title("Petal Length Distribution")
-plt.xlabel("Petal Length (cm)")
-plt.ylabel("Frequency")
-plt.show()
+reference_feature = selected_features[2]  # The reference feature
+comparison_feature = selected_features[1]  # A feature to compare to
 
-plt.figure()
-plt.scatter(x, y)
-plt.xlabel("Sepal Length (cm)")
-plt.ylabel("Petal Length (cm)")
-plt.title("Sepal Length vs Petal Length")
-plt.show()
+# Create a scatter plot for the selected pair
+plt.figure(figsize=(8, 6))
+plt.scatter(df[reference_feature], df[comparison_feature], alpha=0.6)
+plt.xlabel(reference_feature)
+plt.ylabel(comparison_feature)
 
-correlation = df.corr()
+# Save the plot as an image file
+plt.savefig('correlation_plot.png')
 
-plt.figure()
-plt.scatter(x, y)
-plt.title(f"Correlation: {correlation.loc['sepal length (cm)', 'petal length (cm)']:.2f}")
-plt.xlabel("Sepal Length (cm)")
-plt.ylabel("Petal Length (cm)")
-
-# Save figure
-plt.savefig("correlation_plot.png")
-plt.show()
-
-import numpy as np
-
-m, b = np.polyfit(x, y, 1)
-
-plt.figure()
-plt.scatter(x, y)
-plt.plot(x, m*x + b)
-plt.xlabel("Sepal Length (cm)")
-plt.ylabel("Petal Length (cm)")
-plt.title("Scatter Plot with Regression Line")
 plt.show()
