@@ -1,16 +1,7 @@
-# Data Analysis
+# Analysis
 
-## Dataset
-I used the Iris dataset from `sklearn`, which includes different measurements of iris flowers.
+# The Iris dataset was analyzed using histograms and scatter plots. The selected features were sepallength, petalwidth, and class.
 
-## What I Compared
-- Sepal length
-- Petal length
+# Histograms showed that petal width varies more across species than sepal length. Scatter plots comparing features with the class label indicated that petal width # # # provides better separation between iris species.
 
-## What I Found
-After creating histograms and a scatter plot, I noticed a clear positive relationship between sepal length and petal length.  
-As sepal length increases, petal length usually increases too.
-
-## Conclusion
-The results show that sepal length and petal length are strongly related.
-
+# Overall, petal width is a more informative feature for distinguishing between classes than sepal length.
